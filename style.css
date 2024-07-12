@@ -8,15 +8,31 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    font-family: "Pixelify Sans", sans-serif;
 }
 
-h1 {
-    font-family: "Pixelify Sans", sans-serif;
+#header {
+    text-align: center;
+    padding: 30px;
+}
+
+h1 {    
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal; 
-    font-size: 40px;
-    margin-top: 20px;
+    font-size: 50px;    
     margin-bottom: 20px;
+}
+
+h3 {
+    font-weight: 300;
+    font-size: 26px;
+}
+
+#canvas {
+    border: 2px solid black;
+    height: 360px;
+    width: 360px;
 }
 
