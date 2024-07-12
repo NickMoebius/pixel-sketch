@@ -30,9 +30,19 @@ h3 {
     font-size: 26px;
 }
 
-#canvas {
+#canvas {    
+    display: flex;
+    flex-wrap: wrap;
     border: 2px solid black;
-    height: 360px;
-    width: 360px;
+    width: 400px;
+    height: 400px;   
+    box-sizing: content-box; 
+}
+
+.pixel {
+    background-color: rgb(37, 37, 37);
+    width: 25px;
+    height: 25px; 
+    user-select: none; /* Disable element selection */
 }
 
