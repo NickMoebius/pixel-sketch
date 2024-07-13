@@ -69,10 +69,37 @@ function clearButton() {
     });      
 }
 
+function saveButton() {
+    const saveBtn = document.querySelector("#save-btn");
+    saveBtn.addEventListener('click', (event) => {
+        let canvasElement = document.createElement('canvas');
+        canvasElement.width = 16 * 25; // width of grid * pixel size
+        canvasElement.height = 16 * 25; // height of grid * pixel size
+        let ctx = canvasElement.getContext('2d');
+
+        let pixels = document.querySelectorAll('.pixel');
+        pixels.forEach((pixel, index) => {
+            let x = (index % 16) * 25;
+            let y = Math.floor(index / 16) * 25;
+            let color = window.getComputedStyle(pixel).backgroundColor;
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, 25, 25);
+        });
+
+        let dataURL = canvasElement.toDataURL("image/png");
+        let link = document.createElement('a');
+        link.href = dataURL;
+        link.download = 'canvas.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
 
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    pixelGenerator(),
-    pixelColoring(),
-    clearButton()
+    pixelGenerator();
+    pixelColoring();
+    clearButton();
+    saveButton();
 });
