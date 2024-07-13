@@ -64,6 +64,8 @@ let isGridBtnDown = false;
 
 function chosenTools() {
     const tools = document.querySelector("#tools");
+    const colors = document.querySelector(".colors");
+    const sizeOfCanvas = document.querySelector("#size-of-canvas");
     
     tools.addEventListener('click', (event) => {
         let target = event.target;
@@ -77,6 +79,9 @@ function chosenTools() {
                             target.nextElementSibling.classList.remove('active');
                         }
                     } else {
+                        colors.style.display = "flex";
+                        sizeOfCanvas.style.display = "none";
+
                         isColorBtnDown = true;
                         target.classList.add('active');
                         isCanvasSizeBtnDown = false;
@@ -91,6 +96,9 @@ function chosenTools() {
                         isCanvasSizeBtnDown = false;
                         target.classList.remove('active');
                     } else {
+                        sizeOfCanvas.style.display = "flex";
+                        colors.style.display = "none";                        
+
                         isCanvasSizeBtnDown = true;
                         target.classList.add('active');
                         isColorBtnDown = false;
