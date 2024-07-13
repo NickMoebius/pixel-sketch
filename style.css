@@ -1,3 +1,7 @@
+:root {
+    --std-grey: rgba(37, 37, 37, 5%);
+}
+
 * {  
     box-sizing: border-box;
     margin: 0;
@@ -35,7 +39,22 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 
 button {
     cursor: pointer;
+    outline: 2px solid black;
 }
+
+.btn {
+    text-align: center;
+    background-color: var(--std-grey);
+}
+
+.btn:hover {
+    background-color:rgba(37, 37, 37, 10%);
+}
+
+.btn:active {
+    background-color:rgba(37, 37, 37, 15%);
+}
+
 
 #header {
     text-align: center;
@@ -55,6 +74,43 @@ h3 {
     font-size: 26px;
 }
 
+#tools {
+    display: flex;    
+    width: 400px;
+    gap: 7px;
+}
+
+.tools-btn {
+    width: 400px;
+    height: 50px;
+    font-size: 24px;
+    font-weight: 300;    
+    margin-bottom: 5px;    
+}
+
+#tools-submenu {
+    display: flex;
+    outline: 2px solid black;
+    width: 400px;
+    height: 50px;
+    margin-bottom: 5px;
+    background-color: var(--std-grey);
+    gap: 10px;    
+}
+
+#tools-submenu .colors {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    width: 100%;    
+}
+
+#tools-submenu .colors .clr-color {
+    width: 40px;
+    height: 40px;
+}
+
 #border{
     border: 2px solid black;    
     margin-bottom: 10px;
@@ -70,7 +126,7 @@ h3 {
 }
 
 .pixel {
-    background-color: rgba(37, 37, 37, 5%);
+    background-color: var(--std-grey);
     width: 25px;
     height: 25px; 
     user-select: none; /* Disable element selection */
@@ -78,18 +134,7 @@ h3 {
 
 .main-btn {
     width: 400px;
-    height: 50px;
-    text-align: center;
-    background-color:rgba(37, 37, 37, 5%);
+    height: 50px;    
     font-size: 26px;
-    outline: 2px solid black;
     margin-bottom: 10px;
-}
-
-.main-btn:hover {
-    background-color:rgba(37, 37, 37, 10%);
-}
-
-.main-btn:active {
-    background-color:rgba(37, 37, 37, 15%);
 }

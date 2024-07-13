@@ -18,13 +18,34 @@
         <h1>Pixel Sketch</h1>
         <h3>Push Left Mouse Key and draw some art on the canvas</h3>
     </div>
-    <div id="border">
-        <div id="canvas">
+
+    <div id="tools">
+        <button class="btn tools-btn" id="color-btn" title="Chose Color">Color</button>
+        <button class="btn tools-btn" id="canvas-size-btn" title="Change Size of Canvas">Size</button>
+        <button class="btn tools-btn" id="eraser-btn" title="Chose Eraser">Eraser</button>
+        <button class="btn tools-btn" id="grid-btn" title="Grid On/Off">Grid</button>
+    </div>
+
+    <div id="tools-submenu">
+        <div class="colors">
+            <button class="clr-color" style="background-color: white;" title="White"></button>
+            <button class="clr-color" style="background-color: black; color: white;" title="Black"></button>
+            <button class="clr-color" style="background-color: red; color: white;" title="Red"></button>
+            <button class="clr-color" style="background-color: orange; color: black;" title="Orange"></button>
+            <button class="clr-color" style="background-color: yellow; color: black;" title="Yellow"></button>
+            <button class="clr-color" style="background-color: green; color: white;" title="Green"></button>
+            <button class="clr-color" style="background-color: blue; color: white;" title="Blue"></button>
+            <button class="clr-color" style="background-color: purple; color: white;" title="Purple"></button>           
         </div>
     </div>
 
-    <button class="main-btn" id="clear-btn">Clear</button>
-    <button class="main-btn" id="save-btn">Save</button>
+    <div id="border">
+        <div id="canvas">
+        </div>
+    </div>   
+
+    <button class="btn main-btn" id="clear-btn">Clear</button>
+    <button class="btn main-btn" id="save-btn">Save</button>
     
 </body>
 </html>
