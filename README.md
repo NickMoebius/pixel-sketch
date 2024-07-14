@@ -6,7 +6,7 @@
 - [x] Save img function
 - [ ] Color of pixels change
 - [ ] Size of canvas change
-- [ ] Eraser 
-- [ ] Grid on/off
+- [x] Eraser 
+- [x] Grid on/off
 - [ ] Saving in different formats: .svg, .png
 - [ ] Filling option

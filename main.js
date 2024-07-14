@@ -35,9 +35,24 @@ function pixelColoring() {
         let target = event.target;
 
         if (isMouseDown && target.classList.contains('pixel')) {
-            console.log(target.id);
-            target.style.backgroundColor = "rgba(37, 37, 37, 1)";
-            target.style.border = "1px solid white";
+            if (isEraserBtnDown) {
+                if (!isGridBtnDown) {
+                    target.style.backgroundColor = 'var(--std-grey)';
+                } else {
+                    let row = Math.floor((parseInt(target.id.replace('pixel', '')) - 1) / 16);
+                    let col = (parseInt(target.id.replace('pixel', '')) - 1) % 16;
+                    if ((row + col) % 2 === 0) {
+                        target.style.backgroundColor = 'rgba(136, 136, 136, 0.25)';
+                    } else {
+                        target.style.backgroundColor = 'rgba(229, 229, 247, 0.25)';
+                    }
+                }
+                target.style.border = "2px solid red";
+                
+            } else {
+                target.style.backgroundColor = "rgba(37, 37, 37, 1)";
+                target.style.border = "1px solid white";
+            }            
         }
     });
 
@@ -48,13 +63,32 @@ function pixelColoring() {
     canvas.addEventListener('mouseover', (event) => {
         let target = event.target;
 
-        console.log(event);
         if (isMouseDown && target.classList.contains('pixel')) {
-            console.log(target.id);
-            target.style.backgroundColor = "rgba(37, 37, 37, 1)";
-            target.style.border = "1px solid white";
+            if (isEraserBtnDown) {
+                if (!isGridBtnDown) {
+                    target.style.backgroundColor = 'var(--std-grey)';
+                } else {
+                    let row = Math.floor((parseInt(target.id.replace('pixel', '')) - 1) / 16);
+                    let col = (parseInt(target.id.replace('pixel', '')) - 1) % 16;
+                    if ((row + col) % 2 === 0) {
+                        target.style.backgroundColor = 'rgba(136, 136, 136, 0.25)';
+                    } else {
+                        target.style.backgroundColor = 'rgba(229, 229, 247, 0.25)';
+                    }
+                }
+                target.style.border = "3px solid red";
+            } else {
+                target.style.backgroundColor = "rgba(37, 37, 37, 1)";
+                target.style.border = "1px solid white";
+            }
+            
         } else {
-            target.style.border = "1px solid black";
+            if (isEraserBtnDown) {
+                target.style.border = "2px solid red";
+            } else {
+                target.style.border = "1px solid black";
+            }
+            
         }
     });
 
@@ -67,6 +101,7 @@ function pixelColoring() {
         }
     });
 }
+
 
 let isColorBtnDown = true;
 let isCanvasSizeBtnDown = false;
@@ -122,7 +157,7 @@ function chosenTools() {
             case 'eraser-btn':
                 if (isEraserBtnDown) {
                     isEraserBtnDown = false;
-                    target.classList.remove('active');
+                    target.classList.remove('active');                    
                 } else {
                     isEraserBtnDown = true;
                     target.classList.add('active');
