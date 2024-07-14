@@ -1,5 +1,5 @@
 :root {
-    --std-grey: rgba(37, 37, 37, 5%);
+    --std-grey: rgba(37, 37, 37, 5%);    
 }
 
 * {  
@@ -59,6 +59,7 @@ button {
 #header {
     text-align: center;
     padding: 30px;
+    width: 450px;
 }
 
 h1 {    
@@ -178,7 +179,7 @@ h3 {
     /* box-sizing: content-box;  */    
 }
 
-.pixel {
+.pixel {   
     background-color: var(--std-grey);
     width: 25px;
     height: 25px; 
