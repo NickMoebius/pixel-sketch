@@ -146,6 +146,15 @@ function chosenTools() {
     });
 }
 
+function updateSubmenuVisibility() {
+    const submenu = document.querySelector("#tools-submenu");
+    if (!isColorBtnDown && !isCanvasSizeBtnDown) {
+        submenu.style.display = "none";
+    } else {
+        submenu.style.display = "block";
+    }
+}
+
 function gridButton() {
     let pixels = document.querySelectorAll(".pixel");
     pixels.forEach(pixel => {
