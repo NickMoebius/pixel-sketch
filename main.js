@@ -27,6 +27,8 @@ function pixelGenerator() {
     }
 }
 
+let currentColor = "rgba(37, 37, 37, 1)";
+
 function pixelColoring() {
     let isMouseDown;
 
@@ -50,7 +52,7 @@ function pixelColoring() {
                 target.style.border = "2px solid red";
                 
             } else {
-                target.style.backgroundColor = "rgba(37, 37, 37, 1)";
+                target.style.backgroundColor = currentColor; 
                 target.style.border = "1px solid white";
             }            
         }
@@ -78,7 +80,7 @@ function pixelColoring() {
                 }
                 target.style.border = "3px solid red";
             } else {
-                target.style.backgroundColor = "rgba(37, 37, 37, 1)";
+                target.style.backgroundColor = currentColor;
                 target.style.border = "1px solid white";
             }
             
@@ -99,6 +101,18 @@ function pixelColoring() {
         } else {
             isMouseDown = false;
         }
+    });
+}
+
+function chosenColor() {
+    const colors = document.querySelectorAll(".clr-color");
+
+    colors.forEach(colorBtn => {
+        colorBtn.addEventListener('click', () => {
+            colors.forEach(btn => btn.classList.remove('active'));
+            colorBtn.classList.add('active');
+            currentColor = colorBtn.style.backgroundColor;
+        });
     });
 }
 
@@ -282,6 +296,7 @@ function saveButton() {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    chosenColor();
     pixelGenerator();
     pixelColoring();
     chosenTools();

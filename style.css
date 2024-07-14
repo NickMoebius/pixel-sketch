@@ -127,6 +127,11 @@ h3 {
     height: 40px;
 }
 
+.clr-color.active {
+    position: relative;
+    outline: 3px dotted black;    
+}
+
 #size-of-canvas {
     width: 100%;
     height: 100%;
