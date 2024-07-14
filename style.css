@@ -44,7 +44,8 @@ button {
 
 .btn {
     text-align: center;
-    background-color: var(--std-grey);
+    background-color: var(--std-grey);    
+    box-shadow: inset -2px -2px gray;
 }
 
 .btn:hover {
@@ -52,7 +53,8 @@ button {
 }
 
 .btn:active {
-    background-color:rgba(37, 37, 37, 15%);
+    background-color:rgba(37, 37, 37, 15%);    
+    box-shadow: none;
 }
 
 
@@ -90,7 +92,15 @@ h3 {
 }
 
 .tools-btn.active {
-    background-color:rgba(37, 37, 37, 20%);
+    background-color:rgba(37, 37, 37, 20%);   
+    box-shadow: none; 
+}
+
+#eraser-btn.active {
+    color: rgb(255, 0, 0);
+    /* text-shadow: 1px 1px 2px rgb(253, 87, 87); */
+    outline: 2px solid red;    
+    box-shadow: inset -1px -1px 5px rgb(253, 87, 87);
 }
 
 #tools-submenu {
