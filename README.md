@@ -1,6 +1,6 @@
 # **Pixel Sketch** 
 
-*Pixel Sketch* - is a basic pixel graphics editor, made for fun for "The Odin Project".
+[Pixel Sketch](https://nickmoebius.github.io/pixel-sketch/) - is a basic pixel graphics editor, made for fun for "The Odin Project".
 
 It's better to use `<canvas>` tag, but in [Assignment](https://link-url-here.org) you should use `<div>`s as a pixels and make such a canvas from scratch. 
 
