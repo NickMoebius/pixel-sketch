@@ -1,33 +1,61 @@
 const canvas = document.querySelector("#canvas");
 const body = document.querySelector("body");
 
+let currentSize = 16; // Default size
+let currentColor = "rgba(37, 37, 37, 1)";
+
+let isColorBtnDown = true; // Default Color Button is On
+let isCanvasSizeBtnDown = false;
+let isEraserBtnDown = false;
+let isGridBtnDown = true; // Default Grid Button is On
+
+function updateCanvasGrid() {
+    canvas.style.gridTemplateColumns = `repeat(${currentSize}, 1fr)`;
+    canvas.style.gridTemplateRows = `repeat(${currentSize}, 1fr)`;
+}
+
+function changeCanvasSize() {
+    let canvasSizes = document.querySelector("#canvas-sizes");
+    let canvasSlider = document.querySelector("#size-slider");
+
+    canvasSlider.addEventListener('input', () => {
+        currentSize = canvasSlider.value;
+        canvasSizes.textContent = `${currentSize}x${currentSize}`;
+        updateCanvasGrid();
+        pixelGenerator();
+    });
+}
+
 function pixelGenerator() {
-    for (let i = 1; i <= 256; i++) { 
-        let pixel = document.createElement('div'); 
+    canvas.innerHTML = ''; // Clear the canvas
+
+    for (let i = 1; i <= currentSize * currentSize; i++) {
+        let pixel = document.createElement('div');
         pixel.className = 'pixel';
         pixel.id = 'pixel' + i;
 
-        // Determine the row and column of the pixel
-        let row = Math.floor((i - 1) / 16);
-        let col = (i - 1) % 16;
+        pixel.style.width = `${400 / currentSize}px`;
+        pixel.style.height = `${400 / currentSize}px`;
 
         if (isGridBtnDown) {
+            // Determine the row and column of the pixel
+            let row = Math.floor((i - 1) / currentSize);
+            let col = (i - 1) % currentSize;
+
             // Check if the pixel should be dark or light
             if ((row + col) % 2 === 0) {
-                pixel.style.backgroundColor = 'rgba(136, 136, 136, 0.25)'; // dark-gray in rgba
+                pixel.style.backgroundColor = 'rgba(229, 229, 247, 0.25)'; // light-gray in rgb                        
             } else {
-                pixel.style.backgroundColor = 'rgba(229, 229, 247, 0.25)'; // light-gray in rgba
+                pixel.style.backgroundColor = 'rgba(136, 136, 136, 0.25)'; // dark-gray in rgba
             }
         } else {
             pixel.style.backgroundColor = 'var(--std-grey)';
         }
 
         canvas.appendChild(pixel);
-        console.log(`Pixel${i} loaded!`);
     }
+    pixels = document.querySelectorAll(".pixel");
 }
-
-let currentColor = "rgba(37, 37, 37, 1)";
 
 function pixelColoring() {
     let isMouseDown;
@@ -41,12 +69,12 @@ function pixelColoring() {
                 if (!isGridBtnDown) {
                     target.style.backgroundColor = 'var(--std-grey)';
                 } else {
-                    let row = Math.floor((parseInt(target.id.replace('pixel', '')) - 1) / 16);
-                    let col = (parseInt(target.id.replace('pixel', '')) - 1) % 16;
+                    let row = Math.floor((parseInt(target.id.replace('pixel', '')) - 1) / currentSize);
+                    let col = (parseInt(target.id.replace('pixel', '')) - 1) % currentSize;
                     if ((row + col) % 2 === 0) {
-                        target.style.backgroundColor = 'rgba(136, 136, 136, 0.25)';
+                        target.style.backgroundColor = 'rgba(229, 229, 247, 0.25)'; // light-gray in rgba                        
                     } else {
-                        target.style.backgroundColor = 'rgba(229, 229, 247, 0.25)';
+                        target.style.backgroundColor = 'rgba(136, 136, 136, 0.25)'; // dark-gray in rgba
                     }
                 }
                 target.style.border = "2px solid red";
@@ -70,12 +98,12 @@ function pixelColoring() {
                 if (!isGridBtnDown) {
                     target.style.backgroundColor = 'var(--std-grey)';
                 } else {
-                    let row = Math.floor((parseInt(target.id.replace('pixel', '')) - 1) / 16);
-                    let col = (parseInt(target.id.replace('pixel', '')) - 1) % 16;
+                    let row = Math.floor((parseInt(target.id.replace('pixel', '')) - 1) / currentSize);
+                    let col = (parseInt(target.id.replace('pixel', '')) - 1) % currentSize;
                     if ((row + col) % 2 === 0) {
-                        target.style.backgroundColor = 'rgba(136, 136, 136, 0.25)';
+                        target.style.backgroundColor = 'rgba(229, 229, 247, 0.25)'; // light-gray in rgba                        
                     } else {
-                        target.style.backgroundColor = 'rgba(229, 229, 247, 0.25)';
+                        target.style.backgroundColor = 'rgba(136, 136, 136, 0.25)'; // dark-gray in rgba
                     }
                 }
                 target.style.border = "3px solid red";
@@ -115,12 +143,6 @@ function chosenColor() {
         });
     });
 }
-
-
-let isColorBtnDown = true;
-let isCanvasSizeBtnDown = false;
-let isEraserBtnDown = false;
-let isGridBtnDown = false;
 
 function chosenTools() {
     const tools = document.querySelector("#tools");
@@ -171,7 +193,7 @@ function chosenTools() {
             case 'eraser-btn':
                 if (isEraserBtnDown) {
                     isEraserBtnDown = false;
-                    target.classList.remove('active');                    
+                    target.classList.remove('active');
                 } else {
                     isEraserBtnDown = true;
                     target.classList.add('active');
@@ -209,12 +231,12 @@ function gridButton() {
     pixels.forEach(pixel => {
         if (isGridBtnDown) {
             if (pixel.style.backgroundColor === 'var(--std-grey)') {
-                let row = Math.floor((parseInt(pixel.id.replace('pixel', '')) - 1) / 16);
-                let col = (parseInt(pixel.id.replace('pixel', '')) - 1) % 16;
+                let row = Math.floor((parseInt(pixel.id.replace('pixel', '')) - 1) / currentSize);
+                let col = (parseInt(pixel.id.replace('pixel', '')) - 1) % currentSize;
                 if ((row + col) % 2 === 0) {
-                    pixel.style.backgroundColor = 'rgba(136, 136, 136, 0.25)';
+                    pixel.style.backgroundColor = 'rgba(229, 229, 247, 0.25)'; // light-gray in rgba                    
                 } else {
-                    pixel.style.backgroundColor = 'rgba(229, 229, 247, 0.25)';
+                    pixel.style.backgroundColor = 'rgba(136, 136, 136, 0.25)'; // dark-gray in rgba
                 }
             }
         } else {
@@ -228,28 +250,25 @@ function gridButton() {
 }
 
 function clearButton() {
-    const btn = document.querySelector("#clear-btn");
-    let pixels = document.querySelectorAll(".pixel");
+    const btn = document.querySelector("#clear-btn");    
 
     btn.addEventListener('click', (event) => {
-        
-            if (!isGridBtnDown) {
-                pixels.forEach(pixel => {
-                    pixel.style.backgroundColor = "var(--std-grey)";
-                });
-            } else {
-                pixels.forEach(pixel => {
-                    let row = Math.floor((parseInt(pixel.id.replace('pixel', '')) - 1) / 16);
-                    let col = (parseInt(pixel.id.replace('pixel', '')) - 1) % 16;
-                    if ((row + col) % 2 === 0) {
-                        pixel.style.backgroundColor = 'rgba(136, 136, 136, 0.25)';
-                    } else {
-                        pixel.style.backgroundColor = 'rgba(229, 229, 247, 0.25)';
-                    }
-                });
-                
-            }
-        
+        let pixels = document.querySelectorAll(".pixel");
+        if (!isGridBtnDown) {
+            pixels.forEach(pixel => {
+                pixel.style.backgroundColor = "var(--std-grey)";
+            });
+        } else {
+            pixels.forEach(pixel => {
+                let row = Math.floor((parseInt(pixel.id.replace('pixel', '')) - 1) / currentSize);
+                let col = (parseInt(pixel.id.replace('pixel', '')) - 1) % currentSize;
+                if ((row + col) % 2 === 0) {
+                    pixel.style.backgroundColor = 'rgba(229, 229, 247, 0.25)'; // light-gray in rgba
+                } else {                
+                    pixel.style.backgroundColor = 'rgba(136, 136, 136, 0.25)'; // dark-gray in rgba
+                }
+            });
+        }
     });
 }
 
@@ -257,14 +276,14 @@ function saveButton() {
     const saveBtn = document.querySelector("#save-btn");
     saveBtn.addEventListener('click', (event) => {
         let canvasElement = document.createElement('canvas');
-        canvasElement.width = 16 * 25; // width of grid * pixel size
-        canvasElement.height = 16 * 25; // height of grid * pixel size
+        canvasElement.width = currentSize * 25; // width of grid * pixel size
+        canvasElement.height = currentSize * 25; // height of grid * pixel size
         let ctx = canvasElement.getContext('2d');
 
         let pixels = document.querySelectorAll('.pixel');
         pixels.forEach((pixel, index) => {
-            let x = (index % 16) * 25;
-            let y = Math.floor(index / 16) * 25;
+            let x = (index % currentSize) * 25;
+            let y = Math.floor(index / currentSize) * 25;
 
             let color = window.getComputedStyle(pixel).backgroundColor;
             // Check if the color is one of the transparent colors
@@ -296,8 +315,11 @@ function saveButton() {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    chosenColor();
+
     pixelGenerator();
+    updateCanvasGrid();
+    changeCanvasSize();     
+    chosenColor();    
     pixelColoring();
     chosenTools();
     clearButton();

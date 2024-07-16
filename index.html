@@ -23,7 +23,7 @@
         <button class="btn tools-btn active" id="color-btn" title="Chose Color">Color</button>
         <button class="btn tools-btn" id="canvas-size-btn" title="Change Size of Canvas">Size</button>
         <button class="btn tools-btn" id="eraser-btn" title="Chose Eraser">Eraser</button>
-        <button class="btn tools-btn" id="grid-btn" title="Grid On/Off">Grid</button>
+        <button class="btn tools-btn active" id="grid-btn" title="Grid On/Off">Grid</button>
     </div>
 
     <div id="tools-submenu">
@@ -38,7 +38,7 @@
             <button class="clr-color" style="background-color: purple;" title="Purple"></button>           
         </div>
         <div id="size-of-canvas">
-            <p>16x16</p><input type="range" min="16" max="256" value="50" class="slider" id="size-slider">
+            <div id="canvas-sizes"><p>16x16</p></div><input type="range" min="1" max="100" step="1" value="16" class="slider" id="size-slider">
         </div>
     </div>
 
