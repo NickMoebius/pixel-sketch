@@ -94,7 +94,7 @@ function pixelColoring() {
         let target = event.target;
 
         if (isMouseDown && target.classList.contains('pixel')) {
-            if (isEraserBtnDown) {
+            if (isEraserBtnDown && target.classList.contains('pixel')) {
                 if (!isGridBtnDown) {
                     target.style.backgroundColor = 'var(--std-grey)';
                 } else {
@@ -106,16 +106,20 @@ function pixelColoring() {
                         target.style.backgroundColor = 'rgba(136, 136, 136, 0.25)'; // dark-gray in rgba
                     }
                 }
-                target.style.border = "3px solid red";
+                if (target.classList.contains('pixel')) {
+                    target.style.border = "3px solid red";
+                }
+                
             } else {
                 target.style.backgroundColor = currentColor;
                 target.style.border = "1px solid white";
             }
             
         } else {
-            if (isEraserBtnDown) {
+            if (isEraserBtnDown && target.classList.contains('pixel')) {
                 target.style.border = "2px solid red";
-            } else {
+            } 
+            if (target.classList.contains('pixel')) {
                 target.style.border = "1px solid black";
             }
             
